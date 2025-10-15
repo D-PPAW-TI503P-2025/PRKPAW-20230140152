@@ -1,0 +1,12 @@
+# PRKPAW-20230140152
+## GET
+<img width="1919" height="912" alt="Screenshot 2025-10-15 141244" src="https://github.com/user-attachments/assets/532d76c4-8680-415a-8f36-9cd9636886ba" />
+
+## PUT
+<img width="1919" height="968" alt="Screenshot 2025-10-15 141453" src="https://github.com/user-attachments/assets/56a1524e-aca8-40a1-b59d-c7b318196598" />
+
+## DELETE
+<img width="1919" height="890" alt="Screenshot 2025-10-15 141519" src="https://github.com/user-attachments/assets/bca5512e-b0e0-4256-a19e-a511c2b1ab29" />
+
+## POST
+<img width="1919" height="938" alt="Screenshot 2025-10-15 141415" src="https://github.com/user-attachments/assets/d7c68bc7-7bad-4105-8a6e-ee70054caa4b" />
