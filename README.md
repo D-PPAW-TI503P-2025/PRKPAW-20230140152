@@ -1,23 +1,24 @@
+# tugas 4 PRKPAW-20230140152
 
-# tugas 3 PRKPAW-20230140152
-## check in
-<img width="1918" height="1020" alt="Screenshot 2025-10-23 134729" src="https://github.com/user-attachments/assets/7c2ebaa8-6b42-46cf-9d5f-cfd0fad3ec04" />
+ ## 1 POST /api/presensi/check-in
+ berhasil check-in
+<img width="1915" height="1033" alt="Screenshot 2025-10-29 212147" src="https://github.com/user-attachments/assets/fe9e8378-9266-4d00-9896-8fdc16239875" />
 
-## check in kalau 2 kali
-<img width="1919" height="1019" alt="Screenshot 2025-10-23 134744" src="https://github.com/user-attachments/assets/5468d136-a74b-48a7-8dd4-6ccfb95401b3" />
+check-in lebih dari sekali
+<img width="1919" height="1079" alt="Screenshot 2025-10-29 212206" src="https://github.com/user-attachments/assets/3470bd8e-3e29-4e36-aa2c-227d6b08ed1b" />
 
-## check out
-<img width="1920" height="1020" alt="Screenshot 2025-10-23 134811" src="https://github.com/user-attachments/assets/91542340-d728-4653-8ef8-2a879e068488" />
+## check-out
+berhasil cehckout
+<img width="1919" height="1079" alt="Screenshot 2025-10-29 212221" src="https://github.com/user-attachments/assets/93b91d23-d6b7-4960-b3fa-e3368ca12f57" />
 
-## check out jika belum check in
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/7f1205af-198c-41ad-8e50-97e11ca49ffa" />
+check-out lebih dari sekali
+<img width="1919" height="1079" alt="Screenshot 2025-10-29 212233" src="https://github.com/user-attachments/assets/1c82626a-c8de-49a9-96ce-c9100fbab52f" />
 
-## report
-<img width="1920" height="1020" alt="Screenshot 2025-10-23 134925" src="https://github.com/user-attachments/assets/92a3f429-256b-4bc8-bd93-4f4e7560b43a" />
+## ambil report
+<img width="1916" height="1000" alt="Screenshot 2025-10-29 212609" src="https://github.com/user-attachments/assets/a361a063-57a9-4b0f-8717-2f718ce692b0" />
 
-## ke report kalau admin
-<img width="1920" height="1020" alt="Screenshot 2025-10-23 141758" src="https://github.com/user-attachments/assets/7df8c27d-e0e9-4185-a26a-1a16810ec1e8" />
-
+## lihat database
+<img width="980" height="253" alt="Screenshot 2025-10-29 212625" src="https://github.com/user-attachments/assets/30aab03f-dbaa-4ed3-8124-e7959e13570f" />
 
 
 
