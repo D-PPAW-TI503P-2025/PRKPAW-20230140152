@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "hacking",
-    "database": "praktikum_nim_db",
+    "database": "praktikum_20230140152_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
