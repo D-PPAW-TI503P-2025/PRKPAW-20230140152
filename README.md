@@ -1,13 +1,10 @@
-# dokumentasi tugas 6
+# Dokumentasi tugas 7
 
-## 	Request POST /register (untuk membuat user "mahasiswa")
-<img width="1918" height="928" alt="Screenshot 2025-11-06 141227" src="https://github.com/user-attachments/assets/e8d76bed-66ab-4d0b-aed2-b96e31211dda" />
+## Register Page
+<img width="1913" height="1024" alt="Screenshot 2025-11-18 221546" src="https://github.com/user-attachments/assets/bd457350-9776-479a-816f-c2630e5e6050" />
 
-## 	Request POST /register (untuk membuat user "admin")
-<img width="1918" height="968" alt="Screenshot 2025-11-06 141406" src="https://github.com/user-attachments/assets/20c7423f-544a-4570-b527-7549952451d1" />
+## Login Page
+<img width="1917" height="1014" alt="Screenshot 2025-11-18 221603" src="https://github.com/user-attachments/assets/ec016702-db89-469f-94a7-47ecf9b4ef3d" />
 
-##  Request POST /login (login sebagai "mahasiswa" dan mendapatkan token).
-<img width="1919" height="899" alt="Screenshot 2025-11-06 141428" src="https://github.com/user-attachments/assets/bdecb65d-012d-4ff5-9159-0002df7aad79" />
-
-## 	Database table user
-<img width="1105" height="193" alt="Screenshot 2025-11-06 141812" src="https://github.com/user-attachments/assets/f35baf54-2409-49ef-ad89-b6c2ed7a0627" />
+## Dashboard Page
+<img width="1919" height="1029" alt="Screenshot 2025-11-18 221615" src="https://github.com/user-attachments/assets/dae45ebd-44e5-4fcb-83ba-c74830719a02" />
