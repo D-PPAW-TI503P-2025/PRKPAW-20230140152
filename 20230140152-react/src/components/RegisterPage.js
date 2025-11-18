@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
-  const [name, setName] = useState("");
+  const [nama, setName] = useState("");
   const [role, setRole] = useState("mahasiswa");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ function RegisterPage() {
 
     try {
       await axios.post("http://localhost:3001/api/auth/register", {
-        name,
+        nama,
         role,
         email,
         password,
@@ -46,7 +46,7 @@ function RegisterPage() {
             <input 
               type="text"
               className="mt-1 w-full px-3 py-2 border rounded-md"
-              value={name}
+              value={nama}
               onChange={(e)=>setName(e.target.value)}
               required
             />
