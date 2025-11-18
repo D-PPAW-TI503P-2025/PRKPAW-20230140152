@@ -1,6 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
+
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import LoginPage from './components/loginpage';
+import RegisterPage from './components/RegisterPage';
+import DashboardPage from './components/DashboardPage';
+
+// import RegisterPage from "./components/RegisterPage";
+// import DashboardPage from "./components/DashboardPage";
+
+
+
 
 function App() {
+
+
+  
   const [books, setBooks] = useState([]);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
