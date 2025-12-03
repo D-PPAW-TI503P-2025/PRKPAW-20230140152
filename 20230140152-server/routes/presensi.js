@@ -1,45 +1,45 @@
-// routes/presensi.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const presensiController = require('../controllers/presensiController');
+const presensiController = require("../controllers/presensiController");
+const laporanController = require("../controllers/reportController");
 
-const { addUserData } = require('../middleware/permissionMiddleware');
-// jika middleware mu ada di permissionMiddleware, ganti path di atas:
-// const { addUserData } = require('../middleware/permissionMiddleware');
-const { body, validationResult } = require('express-validator');
+const permissionMiddleware = require("../middleware/permissionMiddleware");
 
-// const { updatePresensiRules, validate } = require('../validation/presensiValidator');
+// CHECK-IN
+router.post(
+  "/check-in",
+  permissionMiddleware.authenticateToken,
+  presensiController.CheckIn
+);
 
-// Jika ingin semua route di file ini memakai addUserData, pakai router.use()
-// (atau kamu bisa pasang addUserData per-route jika ada route publik)
-router.use(addUserData);
+// CHECK-OUT
+router.post(
+  "/check-out",
+  permissionMiddleware.authenticateToken,
+  presensiController.CheckOut
+);
 
-// Check-in / Check-out (tidak perlu body kalau req.user di-middleware)
-router.post('/check-in', presensiController.CheckIn);
-router.post('/check-out', presensiController.CheckOut);
-
-// (Opsional) GET semua presensi - jika controller punya fungsi ini
-router.get('/', presensiController.getAllPresensi);
-
-// Update dan Delete (dengan validasi untuk update)
-// ✅ UPDATE (dengan validasi tanggal)
-router.put('/:id',
-  [
-    body('checkIn').optional().isISO8601().withMessage('Format tanggal checkIn tidak valid'),
-    body('checkOut').optional().isISO8601().withMessage('Format tanggal checkOut tidak valid')
-  ],
-  async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
+// UPDATE PRESENSI
+router.patch(
+  "/:id",
+  permissionMiddleware.authenticateToken,
   presensiController.updatePresensi
 );
 
-router.delete('/:id', presensiController.deletePresensi);
+// DELETE PRESENSI
+router.delete(
+  "/:id",
+  permissionMiddleware.authenticateToken,
+  presensiController.deletePresensi
+);
 
+// LAPORAN HARIAN (ADMIN)
+router.get(
+  "/laporan",
+  permissionMiddleware.authenticateToken,
+  permissionMiddleware.isAdmin,
+  laporanController.getDailyReport
+);
 
 module.exports = router;

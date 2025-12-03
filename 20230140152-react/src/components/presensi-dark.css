@@ -1,0 +1,132 @@
+
+.cyber-content h1,
+.cyber-content h2,
+.cyber-content h3,
+.cyber-content p,
+.cyber-content span,
+.cyber-content label {
+  color: #e5e6ff;
+}
+
+
+/* Title */
+.cyber-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff, 0 0 20px #0096c7;
+  font-weight: bold;
+}
+
+/* Card Style */
+.cyber-card {
+  background: rgba(20, 20, 35, 0.8);
+  border: 1px solid #6c00ff;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #6c00ff88;
+}
+
+/* Map */
+.cyber-map {
+  height: 300px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Camera */
+.cyber-video {
+  width: 100%;
+  border: 2px solid #ff00ff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ff00ff88;
+  margin-bottom: 10px;
+}
+
+/* Photo Preview */
+.photo-preview {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 0 15px #00eaff88;
+}
+
+/* Buttons */
+.cyber-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.cyber-btn {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+/* Neon Effects */
+.neon-green {
+  background: #00ff80;
+  box-shadow: 0 0 10px #00ff80, 0 0 20px #00ff8044;
+}
+
+.neon-red {
+  background: #ff0040;
+  box-shadow: 0 0 10px #ff0040, 0 0 20px #ff004044;
+}
+
+.neon-yellow {
+  background: #ffd000;
+  color: #000;
+  box-shadow: 0 0 10px #ffd000, 0 0 20px #ffd00055;
+}
+
+.cyber-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Success / Error messages */
+.msg-success {
+  color: #00ff90;
+  text-shadow: 0 0 10px #00ff90;
+}
+
+.msg-error {
+  color: #ff005c;
+  text-shadow: 0 0 10px #ff005c;
+}
+
+/* Make input text white */
+.cyber-content input,
+.cyber-content select,
+.cyber-content textarea {
+  color: #e5e6ff !important;
+  background: rgba(20, 20, 30, 0.9) !important;
+  border: 1px solid #6f00ff !important;
+  box-shadow: 0 0 10px #6f00ff55;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Placeholder color */
+.cyber-content input::placeholder,
+.cyber-content textarea::placeholder {
+  color: #9aa0c4 !important;
+  opacity: 0.7;
+}
+
+/* Input on focus */
+.cyber-content input:focus,
+.cyber-content textarea:focus {
+  outline: none !important;
+  border-color: #00eaff !important;
+  box-shadow: 0 0 15px #00eaff88;
+}

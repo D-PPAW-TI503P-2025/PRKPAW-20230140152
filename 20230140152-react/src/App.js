@@ -1,35 +1,63 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
+import DashboardPage from './components/DashboardPage';
+import PresensiPage from './components/PresensiPage';
+import AdminPage from './components/AdminPage'; 
+import "leaflet/dist/leaflet.css";
+import "./components/presensi-dark.css";
 
-import LoginPage from "./components/loginpage";
-import RegisterPage from "./components/RegisterPage";
-import DashboardPage from "./components/DashboardPage";
-import BooksPage from "./components/BooksPage";
 
 function App() {
   return (
     <Router>
-      <nav style={{ padding: "10px", background: "#eee" }}>
-        <Link to="/login" style={{ marginRight: "10px" }}>Login</Link>
-        <Link to="/register" style={{ marginRight: "10px" }}>Register</Link>
-        <Link to="/dashboard" style={{ marginRight: "10px" }}>Dashboard</Link>
-        <Link to="/books">Manajemen Buku</Link>
-      </nav>
+      <div className="cyber-wrapper">
+        {/* ===== Navbar Soft Brown Theme ===== */}
+        <nav className="cyber-card" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 
-      <Routes>
+          <h1 className="cyber-content">
+            PAW
+          </h1>
+          <div className="space-x-3">
+            <Link
+              to="/login"
+              className="cyber-btn neon-yellow"
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="cyber-btn neon-yellow"
+            >
+              Register
+            </Link>
+            <Link
+              to="/presensi"
+              className="cyber-btn neon-yellow"
+            >
+              Presensi
+            </Link>
+            <Link
+              to="/admin"
+              className="cyber-btn neon-yellow"
+            >
+              Admin
+            </Link>
+          </div>
+        </nav>
 
-        {/* AUTENTIKASI */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-
-        {/* HALAMAN CRUD */}
-        <Route path="/books" element={<BooksPage />} />
-
-        {/* DEFAULT */}
-        <Route path="/" element={<LoginPage />} />
-
-      </Routes>
+        <div className="p-4 max-w-4xl mx-auto mt-6">
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/presensi" element={<PresensiPage />} />
+            <Route path="/admin" element={<AdminPage />} /> {/* ⬅️ Route Admin */}
+            <Route path="/" element={<LoginPage />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
