@@ -27,6 +27,11 @@ app.use("/api/books", ruteBuku);
 app.use("/api/presensi", presensiRoutes);
 app.use("/api/reports", reportRoutes);
 app.use('/api/auth', authRoutes);
+
+// Tambahan: folder uploads agar bisa diakses dari browser
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.listen(PORT, () => {
   console.log(`Express server running at http://localhost:${PORT}/`);
-}); 
+});

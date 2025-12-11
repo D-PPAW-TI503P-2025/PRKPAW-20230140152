@@ -1,29 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-
-
-// ==== FIX LEAFLET ICON (WAJIB) ====
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
-});
+import locationPin from "./location-pin.png";
 
 function PresensiPage() {
   const [coords, setCoords] = useState(null);
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [photoURL, setPhotoURL] = useState(null);
+  const [modalMessage, setModalMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const streamRef = useRef(null);
 
   const token = localStorage.getItem("token");
+
+  const userIcon = new L.Icon({
+    iconUrl: locationPin,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40],
+  });
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -31,9 +30,7 @@ function PresensiPage() {
         (pos) => setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
         (err) => setError("Gagal mendapatkan lokasi: " + err.message)
       );
-    } else {
-      setError("Browser tidak mendukung geolocation.");
-    }
+    } else setError("Browser tidak mendukung geolocation.");
   };
 
   const startCamera = async () => {
@@ -53,12 +50,9 @@ function PresensiPage() {
     const canvas = canvasRef.current;
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    const url = canvas.toDataURL("image/jpeg");
-    setPhotoURL(url);
-    setMessage("");
+    setPhotoURL(canvas.toDataURL("image/jpeg"));
     setError("");
   };
 
@@ -66,40 +60,41 @@ function PresensiPage() {
     getLocation();
     startCamera();
     return () => {
-      if (streamRef.current) {
+      if (streamRef.current)
         streamRef.current.getTracks().forEach((track) => track.stop());
-      }
     };
   }, []);
 
   const handlePresensi = async (type) => {
-    if (!coords && type === "check-in")
-      return setError("Lokasi belum didapatkan.");
+    if (!coords && type === "check-in") return setError("Lokasi belum didapatkan.");
 
     try {
-      const data = {};
+      let res;
       if (type === "check-in") {
-        data.latitude = coords.lat;
-        data.longitude = coords.lng;
+        if (!photoURL) return setError("Harap ambil foto selfie sebelum check-in.");
+
+        const blob = await (await fetch(photoURL)).blob();
+        const formData = new FormData();
+        formData.append("latitude", coords.lat);
+        formData.append("longitude", coords.lng);
+        formData.append("buktiFoto", blob, "selfie.jpg");
+
+        res = await axios.post("http://localhost:3001/api/presensi/check-in", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } else {
+        res = await axios.post(
+          "http://localhost:3001/api/presensi/check-out",
+          {},
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
       }
 
-      const url =
-        type === "check-in"
-          ? "http://localhost:3001/api/presensi/check-in"
-          : "http://localhost:3001/api/presensi/check-out";
-
-      const res = await axios.post(url, data, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setMessage(res.data.message);
-      setError("");
+      setModalMessage(res.data.message);
+      setShowModal(true);
       setPhotoURL(null);
     } catch (err) {
-      setError(
-        err.response?.data?.message ||
-          `${type === "check-in" ? "Check-in" : "Check-out"} gagal`
-      );
+      setError(err.response?.data?.message || `${type} gagal`);
     }
   };
 
@@ -114,13 +109,12 @@ function PresensiPage() {
           style={{ height: "300px", width: "100%", marginBottom: "20px" }}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={[coords.lat, coords.lng]}>
+          <Marker position={[coords.lat, coords.lng]} icon={userIcon}>
             <Popup>Lokasi Anda</Popup>
           </Marker>
         </MapContainer>
       )}
 
-      {/* Kamera */}
       <div className="mb-4">
         <video
           ref={videoRef}
@@ -136,18 +130,19 @@ function PresensiPage() {
         </button>
 
         {photoURL && (
-          <img
-            src={photoURL}
-            alt="Preview"
-            className="w-full rounded-md border"
-            style={{ maxHeight: "300px" }}
-          />
+          <div className="mt-2">
+            <img
+              src={photoURL}
+              alt="Preview"
+              className="w-full rounded-md border"
+              style={{ maxHeight: "300px" }}
+            />
+          </div>
         )}
 
         <canvas ref={canvasRef} style={{ display: "none" }} />
       </div>
 
-      {/* Tombol Presensi */}
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => handlePresensi("check-in")}
@@ -163,8 +158,29 @@ function PresensiPage() {
         </button>
       </div>
 
-      {message && <p className="text-green-600">{message}</p>}
-      {error && <p className="text-red-600">{error}</p>}
+      {error && <p className="text-red-600 mt-2">{error}</p>}
+
+      {/* Modal Popup */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 animate-fade-in">
+          <div className="bg-white rounded-lg p-6 w-11/12 max-w-sm shadow-lg relative">
+            <h3 className="text-lg font-bold mb-4">Info Presensi</h3>
+            <p className="mb-4">{modalMessage}</p>
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 font-bold"
+            >
+              &times;
+            </button>
+            <button
+              onClick={() => setShowModal(false)}
+              className="mt-2 w-full py-2 px-4 bg-blue-600 text-white rounded-md"
+            >
+              Tutup
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -4,7 +4,6 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Presensi extends Model {
     static associate(models) {
-
       Presensi.belongsTo(models.User, {
         foreignKey: "userId",
         as: "user",
@@ -35,15 +34,21 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
 
-      // ➕ Tambahan sesuai modul (TIDAK mengubah coding lama)
+      // Lokasi (latitude & longitude)
       latitude: {
         type: DataTypes.DECIMAL(10, 8),
-        allowNull: true, // Jika user menolak izin lokasi
+        allowNull: true,
       },
 
       longitude: {
         type: DataTypes.DECIMAL(11, 8),
         allowNull: true,
+      },
+
+      // ➕ Tambahan: buktiFoto
+      buktiFoto: {
+        type: DataTypes.STRING,
+        allowNull: true, // bisa kosong jika tidak upload foto
       },
     },
     {

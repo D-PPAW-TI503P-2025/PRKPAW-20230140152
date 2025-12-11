@@ -6,35 +6,46 @@ const laporanController = require("../controllers/reportController");
 
 const permissionMiddleware = require("../middleware/permissionMiddleware");
 
-// CHECK-IN
+// ========================
+// CHECK-IN (dengan foto)
+// ========================
 router.post(
   "/check-in",
   permissionMiddleware.authenticateToken,
+  presensiController.upload.single('buktiFoto'), // perbaikan: nama field sesuai DB
   presensiController.CheckIn
 );
 
+// ========================
 // CHECK-OUT
+// ========================
 router.post(
   "/check-out",
   permissionMiddleware.authenticateToken,
   presensiController.CheckOut
 );
 
+// ========================
 // UPDATE PRESENSI
+// ========================
 router.patch(
   "/:id",
   permissionMiddleware.authenticateToken,
   presensiController.updatePresensi
 );
 
+// ========================
 // DELETE PRESENSI
+// ========================
 router.delete(
   "/:id",
   permissionMiddleware.authenticateToken,
   presensiController.deletePresensi
 );
 
+// ========================
 // LAPORAN HARIAN (ADMIN)
+// ========================
 router.get(
   "/laporan",
   permissionMiddleware.authenticateToken,
