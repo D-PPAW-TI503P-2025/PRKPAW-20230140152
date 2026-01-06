@@ -1,11 +1,13 @@
-# tugas 9 tapi di myclass masuk tugas 10
+# Tugas 11 – IoT HTTP Client
 
-# presensi
-<img width="796" height="889" alt="Screenshot 2025-12-11 114141" src="https://github.com/user-attachments/assets/796f9b06-9d45-49b2-a647-b61137a7ceb2" />
+## Deskripsi
+ESP32 berhasil terhubung ke jaringan WiFi dan mengirimkan data ke server Express.js menggunakan metode HTTP POST. Data yang dikirim berupa deviceId, pesan, dan uptime (waktu nyala perangkat dalam milidetik) menggunakan fungsi millis().
 
-# halaman admin baru
-<img width="1180" height="677" alt="Screenshot 2025-12-11 113731" src="https://github.com/user-attachments/assets/e7d44514-c67c-4dd9-93c5-609fc27ee811" />
+## Bukti Pengujian
 
-# kalau ditekan
-<img width="1688" height="854" alt="Screenshot 2025-12-11 113738" src="https://github.com/user-attachments/assets/f740f4b4-c090-4110-9871-83f272485066" />
+### 1. Serial Monitor Arduino IDE
+<img width="1486" height="999" alt="Screenshot 2026-01-06 145430" src="https://github.com/user-attachments/assets/ad760f4b-48e9-4eb9-a583-a5b8c47519a4" />
 
+
+### 2. Terminal Server Express.js
+<img width="1403" height="995" alt="Screenshot 2026-01-06 145442" src="https://github.com/user-attachments/assets/da6593e7-d1b6-4c14-a87d-34b3d058d2e6" />
