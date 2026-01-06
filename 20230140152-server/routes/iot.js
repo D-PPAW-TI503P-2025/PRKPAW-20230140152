@@ -4,3 +4,5 @@ const iotController = require('../controllers/iotController');
 
 router.post('/ping', iotController.testConnection);
 module.exports = router;
+
+router.post("/data", iotController.receiveSensorData);
