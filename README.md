@@ -1,12 +1,9 @@
-# Tugas 13 
+# Tugas 14
 
 ## Deskripsi
-arduino
-![tugas13 (2)](https://github.com/user-attachments/assets/a5b1654e-b319-4f10-b2f4-e6766fd06841)
-
-vscode
-![tugas13](https://github.com/user-attachments/assets/11f843fc-e315-4974-b754-6dff353049dc)
+tampilan web
+![WhatsApp Image 2026-01-07 at 11 53 57](https://github.com/user-attachments/assets/4335a566-764e-4911-b0c1-826268ba3d7f)
 
 
 database
-![tugas13 3](https://github.com/user-attachments/assets/445e426b-a123-4344-b567-7e3f6b4dcee5)
+![WhatsApp Image 2026-01-07 at 12 26 42](https://github.com/user-attachments/assets/a5fbcb7f-80d1-452d-82b4-e57e2bc854ce)
